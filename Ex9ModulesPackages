@@ -1,0 +1,48 @@
+from fibo import fib, fib2
+fib(500)
+
+#to jest nie zalecane!!
+from fibo import *
+fib(500)
+
+#PYTHONPATH zawiera sciezki gdzie szukane sa moduly do zaimportowania przez pythona
+#mozna do tych sciezek miec dostep tak jak ponizej
+import sys
+sys.path.append('/ufs/guido/lib/python')
+
+#funkcja dir() listuje wszystkie nazwy zdefiniowane w podanym jako argument module
+import fibo, sys
+dir(fibo)
+
+dir(sys)  
+
+#Modul builtins zawiera wbudowane funkcje i zmienne
+import builtins
+dir(builtins)
+
+## Jeśli chcemy zrobic pakiet modułów to w jego strukturze katalogów musi znaleźć się plik __init__.py
+## Pozwala to odróżnić zwykłe katalogi od tych pakietowych
+## Zdefiniowanie zmiennej __all__ jako listy zawierającej wszystkie nazwy danego modułu spowoduje że import *
+## zaimportuje tylko te nazwy z modułu.
+__all__ = ["echo", "surround", "reverse"]
+
+
+import sound.effects.echo
+sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)
+
+#krócej:
+from sound.effects import echo
+echo.echofilter(input, output, delay=0.7, atten=4)
+
+#jeszcze krócej:
+from sound.effects.echo import echofilter
+echofilter(input, output, delay=0.7, atten=4)
+
+#Można używać względnych ścieżek importowania, ale tylko dla modułów których nie będziemy uruchamiać bezpośrednio.
+#Tylko dla takich można, które będą importowane, bo importowanie po ścieżkach wzglęnych bierze pod uwagę zmienną
+# __path__, która dla modułu odpalanego zawsze nazywa się "__main__", więc importowanie się nie powiedzie.
+
+from . import echo
+from .. import formats
+from ..filters import equalizer
+
