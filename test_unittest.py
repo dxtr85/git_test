@@ -46,6 +46,7 @@ class TestStringMethods(unittest.TestCase):
 '''
         import xml.etree.ElementTree as ET
         from mock import patch, mock_open
+        
         with patch("__builtin__.open", mock_open(read_data=XML)) as mock_file:
             tree = ET.parse('country_data.xml')
             root = tree.getroot()
