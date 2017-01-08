@@ -51,6 +51,7 @@ class TestStringMethods(unittest.TestCase):
             tree = ET.parse('country_data.xml')
             root = tree.getroot()
             print('root: %s' %root.tag)
+            
             for child in root:
                 print child.tag, child.attrib
         
