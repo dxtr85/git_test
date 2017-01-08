@@ -12,8 +12,8 @@ dict = {'kuba':6,'witek':5,'marta':4}
 for name,value in dict.items():
     print("Nazwa:", name,"wartosc:",value)
 
-Ex1.fib(10000000)
-res = Ex1.fib2(334)
+Ex1.fib(10000)
+res = Ex1.fib2(335)
 print(res)
 
 class WlasnyException(Exception):
@@ -36,9 +36,9 @@ class Klasa:
     def add_trick(self,name):
         self.trick.append(name)
     def print_tricks(self):
-        print("Triki",self.name,end=': ')
+        print("Triki",self.name,'\b: ')
         for i in self.trick:
-            print(i,end=" ")
+            print(i)
         print()
 
 
@@ -67,13 +67,21 @@ print(k.zwroc())
 print("Test")
 
 def funkcja():
+    print("local wart: ")
     wart = 1
+    wart2 = 2
+    print(wart,wart2)
     def test():
+        print("Słowo kluczowe 'nonlocal'powoduje, że nadpisujemy zmienną nielokalną, spoza obecnego zakresu: ")
         nonlocal wart
-        print(wart)
-        wart = 2
+        wart2 = 9
+        print(wart, wart2)
+        print("wewnątrz test(): ")
+        wart = 8
+        print(wart, wart2)
     test()
-    print(wart)
+    print("poza test()")
+    print(wart,wart2)
 funkcja()
 
 try:
@@ -92,4 +100,4 @@ else:
 
 print("Poza trajkaczem")
 int(input("Daj jako liszpe:"))
-
+return 13
